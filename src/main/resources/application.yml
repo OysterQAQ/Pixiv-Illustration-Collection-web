@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  data:
+    mongodb:
+      database: pixiv-illustration-collection
+      uri: mongodb://worker01:27017/pixiv-illustration-collection
+  mail:
+    host: smtp.qq.com
+    username: 392822872@qq.com
+    password: yrhmglulgsxsbgjf
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+pixiv:
+  client_id:
+  client_secret:
+  username:
+  password:
+  device_token:
+  refresh_token:
+sina:
+  username:
+  password:
+imgur:
+  client_id:
+client:
+  checkWord: 1111
