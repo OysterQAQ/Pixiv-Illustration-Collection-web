@@ -49,7 +49,7 @@ public class PivicConfig {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("https://pixivic.com");
         config.addAllowedOrigin("https://m.picivic.com");
-        config.addAllowedOrigin("http://localhost:63342");
+        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addExposedHeader("Authorization");
         config.addAllowedMethod("*");

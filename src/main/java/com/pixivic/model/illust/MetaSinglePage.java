@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class MetaSinglePage {
     String original_image_url;
+    String large_image_url;
 }

@@ -4,11 +4,11 @@ spring:
   data:
     mongodb:
       database: pixiv-illustration-collection
-      uri: mongodb://worker01:27017/pixiv-illustration-collection
+      uri: mongodb://127.0.0.1:27017/pixiv-illustration-collection
   mail:
     host: smtp.qq.com
-    username: 392822872@qq.com
-    password: yrhmglulgsxsbgjf
+    username: 403827354@qq.com
+    password:
     protocol: smtp
     properties:
       mail:
@@ -27,10 +27,5 @@ pixiv:
   password:
   device_token:
   refresh_token:
-sina:
-  username:
-  password:
-imgur:
-  client_id:
 client:
-  checkWord: 1111
+  checkWord: oysterqaq

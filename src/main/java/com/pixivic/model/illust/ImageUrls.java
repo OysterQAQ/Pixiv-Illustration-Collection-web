@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class ImageUrls {
     String original;
+    String large;
 }
