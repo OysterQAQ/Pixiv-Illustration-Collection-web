@@ -29,7 +29,7 @@ public class PivicConfig {
     public WebClient webClient() {
         return WebClient
                 .builder()
-                .baseUrl("https://search.api.pixivic.com")
+                .baseUrl("http://app-api.pixivlite.com")
                 .defaultHeaders(httpHeaders -> {
                     httpHeaders.addAll(new LinkedMultiValueMap<>() {{
                         add("User-Agent", "PixivAndroidApp/5.0.93 (Android 5.1; m2)");
@@ -51,7 +51,6 @@ public class PivicConfig {
         config.addAllowedOrigin("https://m.picivic.com");
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
-        config.addExposedHeader("Authorization");
         config.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Document(collection = "rank")
 public class Rank {
     @NotNull
-    private Illustration[] illustrations;
+    protected List<Illustration> illustrations;
     @NotNull
     private String mode;
     @NotNull

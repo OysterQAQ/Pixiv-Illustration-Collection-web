@@ -31,11 +31,11 @@ public class SearchUtil {
     }
 
     public Mono<PixivResponse> search(String keyword, Integer page, String startDate, String endDate) throws UnsupportedEncodingException {
-        return request("https://search.api.pixivic.com/v1/search/illust?filter=for_android&sort=popular_desc&search_target=partial_match_for_tags&start_date=" + startDate + "&end_date=" + endDate + "&word=" + URLEncoder.encode(keyword, "UTF-8") + "&offset=" + page * 30, PixivResponse.class).cast(PixivResponse.class);
+        return request("http://app-api.pixivlite.com/v1/search/illust?filter=for_android&sort=popular_desc&search_target=partial_match_for_tags&start_date=" + startDate + "&end_date=" + endDate + "&word=" + URLEncoder.encode(keyword, "UTF-8") + "&offset=" + page * 30, PixivResponse.class).cast(PixivResponse.class);
     }
 
     public Mono<PixivResponse> search(String keyword, Integer page) throws UnsupportedEncodingException {
-        return request("https://search.api.pixivic.com/v1/search/illust?filter=for_android&sort=popular_desc&search_target=partial_match_for_tags&word=" + URLEncoder.encode(keyword, "UTF-8") + "&offset=" + page * 30, PixivResponse.class).cast(PixivResponse.class);
+        return request("http://app-api.pixivlite.com/v1/search/illust?filter=for_android&sort=popular_desc&search_target=partial_match_for_tags&word=" + URLEncoder.encode(keyword, "UTF-8") + "&offset=" + page * 30, PixivResponse.class).cast(PixivResponse.class);
     }
 
     private Mono request(String url, Class clazz) {
@@ -59,7 +59,7 @@ public class SearchUtil {
     }
 
     public Mono<Candidate> getCandidateWords(String keyword) {
-        return request("https://search.api.pixivic.com/v1/search/autocomplete?word=" + keyword, Candidate.class).cast(Candidate.class);
+        return request("http://app-api.pixivlite.com/v1/search/autocomplete?word=" + keyword, Candidate.class).cast(Candidate.class);
     }
 
     public Mono<RelatedTag[]> getRelatedTags(String keyword) throws UnsupportedEncodingException {

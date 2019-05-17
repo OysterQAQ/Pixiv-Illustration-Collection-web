@@ -4,6 +4,7 @@ import com.pixivic.exception.CheckWordException;
 import com.pixivic.exception.RankEmptyException;
 import com.pixivic.model.Rank;
 import com.pixivic.model.Result;
+import com.pixivic.service.IllustrationService;
 import com.pixivic.service.RankService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,14 @@ import javax.validation.constraints.NotBlank;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RankController {
     private final RankService rankService;
+    private final IllustrationService illustrationService;
     @Value("${client.checkWord}")
     private String checkWord;
 
     @PostMapping
-    public Mono<ResponseEntity<Result<Rank>>> acceptRankPost(@RequestBody() @Validated Rank rank, @RequestHeader String checkWord) {
-        if (checkWord.equals(checkWord))
-            return rankService.save(rank).map(r -> ResponseEntity.ok(new Result<>("保存成功", r)));
+    public Mono<ResponseEntity<Result<Rank>>> acceptRankPost(@RequestBody() @Validated Rank rank, @RequestHeader String word) {
+        if (checkWord.equals(word))
+            return illustrationService.save(rank.getIllustrations(),rank.getDate()).then(rankService.save(rank)).map(r -> ResponseEntity.ok(new Result<>("保存成功", r)));
         throw new CheckWordException(new Result<>(HttpStatus.BAD_REQUEST, "校验码出错"));
     }
 

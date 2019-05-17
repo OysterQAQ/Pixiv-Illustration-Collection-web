@@ -6,12 +6,15 @@ import com.pixivic.model.illust.MetaSinglePage;
 import com.pixivic.model.illust.Tag;
 import com.pixivic.model.illust.User;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Document(collection = "illust")
 public class Illustration {
     private String id;
     private String title;
@@ -24,7 +27,9 @@ public class Illustration {
     private Integer page_count;
     private Integer width;
     private Integer height;
+    private Float height_width_ratio;//长宽比
     private Integer rank;
+    private String dateOfThisRank;//当前所在排行的日期
     private Integer sanity_level;//色情指数(大于5上传其他图床)
     private MetaSinglePage meta_single_page;
     private ArrayList<MetaPage> meta_pages;

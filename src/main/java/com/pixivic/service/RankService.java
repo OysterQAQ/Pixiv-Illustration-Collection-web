@@ -8,11 +8,9 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
 @Service
-@RequestMapping("/ranks")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RankService {
     private final RankRepository rankRepository;
@@ -22,9 +20,9 @@ public class RankService {
         return rankRepository.save(rank);
     }
 
-    public Mono<Rank> getRankByModeAndDate(String mode, String date,Integer page) {
+    public Mono<Rank> getRankByModeAndDate(String mode, String date, Integer page) {
         Query query = Query.query(Criteria.where("mode").is(mode).and("date").is(date));
-        query.fields().slice("illustrations", page* 30, 30);
+        query.fields().slice("illustrations", page * 30, 30);
         return reactiveMongoTemplate.findOne(query, Rank.class);
     }
 }
