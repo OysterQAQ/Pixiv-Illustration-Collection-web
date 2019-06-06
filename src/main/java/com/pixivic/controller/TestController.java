@@ -19,10 +19,10 @@ public class TestController {
     private final IllustrationRepository illustrationRepository;
     private final IllustrationService illustrationService;
 
-    @GetMapping
+   // @GetMapping
     public Mono<String> test() {
         return rankRepository.findAll().map(rank -> {
-            return illustrationService.save(rank.getIllustrations(),rank.getDate()).subscribe();
+            return illustrationService.save(rank.getIllustrations()).subscribe();
         }).collectList().map(illustrationFlux -> "233");
     }
 }

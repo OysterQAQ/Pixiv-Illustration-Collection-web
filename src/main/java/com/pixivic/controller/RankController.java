@@ -2,6 +2,7 @@ package com.pixivic.controller;
 
 import com.pixivic.exception.CheckWordException;
 import com.pixivic.exception.RankEmptyException;
+import com.pixivic.model.Illustration;
 import com.pixivic.model.Rank;
 import com.pixivic.model.Result;
 import com.pixivic.service.IllustrationService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @RestController
 @RequestMapping("/ranks")
@@ -27,9 +29,9 @@ public class RankController {
     private String checkWord;
 
     @PostMapping
-    public Mono<ResponseEntity<Result<Rank>>> acceptRankPost(@RequestBody() @Validated Rank rank, @RequestHeader String word) {
+    public Mono<ResponseEntity<Result<List<Illustration>>>> acceptRankPost(@RequestBody() @Validated Rank rank, @RequestHeader String word) {
         if (checkWord.equals(word))
-            return illustrationService.save(rank.getIllustrations(),rank.getDate()).then(rankService.save(rank)).map(r -> ResponseEntity.ok(new Result<>("保存成功", r)));
+            return rankService.save(rank).flatMap(r->illustrationService.save(r.getIllustrations())).map(illustrations -> ResponseEntity.ok(new Result<>("保存成功", illustrations)));
         throw new CheckWordException(new Result<>(HttpStatus.BAD_REQUEST, "校验码出错"));
     }
 

@@ -1,12 +1,12 @@
 package com.pixivic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.pixivic.model.illust.MetaPage;
 import com.pixivic.model.illust.MetaSinglePage;
 import com.pixivic.model.illust.Tag;
 import com.pixivic.model.illust.User;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -14,9 +14,10 @@ import java.util.Date;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Document(collection = "illust")
+@Document(collection = "illustration")
 public class Illustration {
     private String id;
+    private String illust_id;//pixiv_id
     private String title;
     private String type;
     private String caption;
